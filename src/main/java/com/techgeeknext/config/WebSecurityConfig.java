@@ -36,6 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private MyTestFilter myTestFilter;
+	@Autowired
+	private MyTest2Filter myTest2Filter;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -73,5 +75,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		httpSecurity.addFilterBefore(this.myTestFilter, JwtRequestFilter.class);
+		httpSecurity.addFilterBefore(this.myTest2Filter, MyTestFilter.class);
 	}
 }

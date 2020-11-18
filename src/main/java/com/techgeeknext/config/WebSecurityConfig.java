@@ -39,6 +39,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private MyTest2Filter myTest2Filter;
 
+	//https://spring.io/guides/topicals/spring-security-architecture/
+	/**
+	 * If we had used an @Override of a method in the configurer, the AuthenticationManagerBuilder would be used only to build a “local” AuthenticationManager,
+	 * which would be a child of the global one. In a Spring Boot application, you can @Autowired the global one into another bean, but you cannot do
+	 * that with the local one unless you explicitly expose it yourself.
+	 */
+	//here we create a global AuthenticationManager instead of local
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		// configure AuthenticationManager so that it knows from where to load
